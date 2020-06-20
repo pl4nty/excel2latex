@@ -5,10 +5,10 @@
   <ProviderName>Contoso</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="Excel2LaTeX"/>
-  <Description DefaultValue="Office add-in for converting Excel selections to LaTeX tables"/>
+  <Description DefaultValue="Office add-in for converting Excel cells to LaTeX tables"/>
   <IconUrl DefaultValue="https://localhost:3000/assets/icon-32.png"/>
   <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-80.png"/>
-  <SupportUrl DefaultValue="https://github.com/pl4nty/modern-excel2latex/issues"/>
+  <SupportUrl DefaultValue="https://github.com/pl4nty/excel2latex/issues"/>
   <AppDomains>
     <AppDomain>https://github.com/pl4nty/modern-excel2latex</AppDomain>
   </AppDomains>
@@ -28,7 +28,6 @@
             <Description resid="GetStarted.Description"/>
             <LearnMoreUrl resid="GetStarted.LearnMoreUrl"/>
           </GetStarted>
-          <FunctionFile resid="Commands.Url"/>
           <ExtensionPoint xsi:type="PrimaryCommandSurface">
             <OfficeTab id="TabData">
               <Group id="CommandsGroup">
@@ -40,7 +39,6 @@
                 </Icon>
                 <Control xsi:type="Button" id="CopyButton">
                   <Label resid="CopyButton.Label"/>
-                  <Tooltip resid="CopyButton.Tooltip"/>
                   <Supertip>
                     <Title resid="CopyButton.Label"/>
                     <Description resid="CopyButton.Tooltip"/>
@@ -69,7 +67,6 @@
       </bt:Images>
       <bt:Urls>
         <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://github.com/pl4nty/modern-excel2latex"/>
-        <bt:Url id="Commands.Url" DefaultValue="https://localhost:3000/commands.html"/>
         <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/taskpane.html"/>
       </bt:Urls>
       <bt:ShortStrings>

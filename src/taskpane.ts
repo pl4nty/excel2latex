@@ -47,7 +47,13 @@ export async function run(event: Excel.BindingDataChangedEventArgs) {
       const props = range.getCellProperties({
         format: {
           font: {
-            color: true
+            bold: true,
+            color: true,
+            italic: true,
+            strikethrough: true,
+            subscript: true,
+            superscript: true,
+            underline: true
           }
         }
       });
@@ -118,7 +124,7 @@ function applyFormat(value: string, format, packages) {
 
   if (format.font.superscript) value = `\\textsuperscript{${value}}`
 
-  if (format.font.underline) value = `\\underline{${value}}`
+  if (format.font.underline === "Single") value = `\\underline{${value}}`
 
   return { value, packages };
 }
