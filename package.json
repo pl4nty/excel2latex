@@ -1,9 +1,9 @@
 {
-  "name": "office-addin-taskpane",
+  "name": "excel2latex",
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/OfficeDev/Office-Addin-TaskPane.git"
+    "url": "https://github.com/pl4nty/modern-excel2latex.git"
   },
   "license": "MIT",
   "config": {

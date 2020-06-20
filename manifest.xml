@@ -55,22 +55,6 @@
                     <SourceLocation resid="Taskpane.Url"/>
                   </Action>
                 </Control>
-                <!-- <Control xsi:type="Button" id="ExportButton">
-                  <Label resid="ExportButton.Label"/>
-                  <Tooltip resid="ExportButton.Tooltip"/>
-                  <Supertip>
-                    <Title resid="ExportButton.Label"/>
-                    <Description resid="ExportButton.Tooltip"/>
-                  </Supertip>
-                  <Icon>
-                    <bt:Image size="16" resid="Icon.16x16"/>
-                    <bt:Image size="32" resid="Icon.32x32"/>
-                    <bt:Image size="80" resid="Icon.80x80"/>
-                  </Icon>
-                  <Action xsi:type="ExecuteFunction">
-                    <FunctionName>export</FunctionName>
-                  </Action>
-                </Control> -->
               </Group>
             </OfficeTab>
           </ExtensionPoint>
@@ -91,13 +75,11 @@
       <bt:ShortStrings>
         <bt:String id="GetStarted.Title" DefaultValue="Get started with Excel2LaTeX"/>
         <bt:String id="CommandsGroup.Label" DefaultValue="Excel2LaTeX"/>
-        <bt:String id="CopyButton.Label" DefaultValue="Copy to clipboard"/>
-        <!-- <bt:String id="ExportButton.Label" DefaultValue="Export to file"/> -->
+        <bt:String id="CopyButton.Label" DefaultValue="Convert to LaTeX"/>
       </bt:ShortStrings>
       <bt:LongStrings>
-        <bt:String id="GetStarted.Description" DefaultValue="Excel2LaTeX installed succesfully. Select some cells to get started."/>
-        <bt:String id="CopyButton.Tooltip" DefaultValue="Copy LaTeX code to your clipboard"/>
-        <!-- <bt:String id="ExportButton.Tooltip" DefaultValue="Export a LaTeX document to a file"/> -->
+        <bt:String id="GetStarted.Description" DefaultValue="Excel2LaTeX installed successfully. Select some cells to get started."/>
+        <bt:String id="CopyButton.Tooltip" DefaultValue="Convert selected cells to LaTeX code."/>
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>
