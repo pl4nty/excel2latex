@@ -20,6 +20,7 @@
     "lint:fix": "office-addin-lint fix",
     "prettier": "office-addin-lint prettier",
     "start": "office-addin-debugging start manifest.xml",
+    "start:prod": "office-addin-debugging start manifest-prod.xml",
     "start:desktop": "office-addin-debugging start manifest.xml desktop",
     "start:web": "office-addin-debugging start manifest.xml web",
     "stop": "office-addin-debugging stop manifest.xml",
