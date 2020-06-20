@@ -22,10 +22,10 @@ jobs:
     - name: 'Deploy to Azure WebApp'
       uses: feeloor/azure-static-website-deploy@v0.1.0
       with:
-        SOURCE_DIR: './dist'
+        SOURCE_DIR: "./dist"
         AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
         AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
         AZURE_SECRET: ${{ secrets.AZURE_SECRET }}
-        AZURE_SUBSCRIPTION_ID: '8e8bbf73-03c1-44da-a079-6db5df3c079d'
+        AZURE_SUBSCRIPTION_ID: "8e8bbf73-03c1-44da-a079-6db5df3c079d"
         AZURE_STORAGE_ACCOUNT_NAME: ${{ secrets.AZURE_STORAGE_ACCOUNT_NAME }}
-        AZURE_INDEX_DOCUMENT_NAME: 'taskpane.html'
+        AZURE_INDEX_DOCUMENT_NAME: "taskpane.html"
