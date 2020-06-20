@@ -1,6 +1,5 @@
 on:
-  release:
-    types: [created]
+  push
 
 env:
   NODE_VERSION: '12.13.0'             # set this to the node version to use
