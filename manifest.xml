@@ -5,7 +5,7 @@
   <ProviderName>Contoso</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="Excel2LaTeX"/>
-  <Description DefaultValue="A template to get started."/>
+  <Description DefaultValue="Office add-in for converting Excel selections to LaTeX tables"/>
   <IconUrl DefaultValue="https://localhost:3000/assets/icon-32.png"/>
   <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-80.png"/>
   <SupportUrl DefaultValue="https://github.com/pl4nty/modern-excel2latex/issues"/>
@@ -30,7 +30,7 @@
           </GetStarted>
           <FunctionFile resid="Commands.Url"/>
           <ExtensionPoint xsi:type="PrimaryCommandSurface">
-            <OfficeTab id="TabHome">
+            <OfficeTab id="TabData">
               <Group id="CommandsGroup">
                 <Label resid="CommandsGroup.Label"/>
                 <Icon>
@@ -38,11 +38,12 @@
                   <bt:Image size="32" resid="Icon.32x32"/>
                   <bt:Image size="80" resid="Icon.80x80"/>
                 </Icon>
-                <Control xsi:type="Button" id="TaskpaneButton">
-                  <Label resid="TaskpaneButton.Label"/>
+                <Control xsi:type="Button" id="CopyButton">
+                  <Label resid="CopyButton.Label"/>
+                  <Tooltip resid="CopyButton.Tooltip"/>
                   <Supertip>
-                    <Title resid="TaskpaneButton.Label"/>
-                    <Description resid="TaskpaneButton.Tooltip"/>
+                    <Title resid="CopyButton.Label"/>
+                    <Description resid="CopyButton.Tooltip"/>
                   </Supertip>
                   <Icon>
                     <bt:Image size="16" resid="Icon.16x16"/>
@@ -54,6 +55,22 @@
                     <SourceLocation resid="Taskpane.Url"/>
                   </Action>
                 </Control>
+                <!-- <Control xsi:type="Button" id="ExportButton">
+                  <Label resid="ExportButton.Label"/>
+                  <Tooltip resid="ExportButton.Tooltip"/>
+                  <Supertip>
+                    <Title resid="ExportButton.Label"/>
+                    <Description resid="ExportButton.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16"/>
+                    <bt:Image size="32" resid="Icon.32x32"/>
+                    <bt:Image size="80" resid="Icon.80x80"/>
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>export</FunctionName>
+                  </Action>
+                </Control> -->
               </Group>
             </OfficeTab>
           </ExtensionPoint>
@@ -67,18 +84,20 @@
         <bt:Image id="Icon.80x80" DefaultValue="https://localhost:3000/assets/icon-80.png"/>
       </bt:Images>
       <bt:Urls>
-        <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://go.microsoft.com/fwlink/?LinkId=276812"/>
+        <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://github.com/pl4nty/modern-excel2latex"/>
         <bt:Url id="Commands.Url" DefaultValue="https://localhost:3000/commands.html"/>
         <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/taskpane.html"/>
       </bt:Urls>
       <bt:ShortStrings>
-        <bt:String id="GetStarted.Title" DefaultValue="Get started with your sample add-in!"/>
-        <bt:String id="CommandsGroup.Label" DefaultValue="Commands Group"/>
-        <bt:String id="TaskpaneButton.Label" DefaultValue="Show Taskpane"/>
+        <bt:String id="GetStarted.Title" DefaultValue="Get started with Excel2LaTeX"/>
+        <bt:String id="CommandsGroup.Label" DefaultValue="Excel2LaTeX"/>
+        <bt:String id="CopyButton.Label" DefaultValue="Copy to clipboard"/>
+        <!-- <bt:String id="ExportButton.Label" DefaultValue="Export to file"/> -->
       </bt:ShortStrings>
       <bt:LongStrings>
-        <bt:String id="GetStarted.Description" DefaultValue="Your sample add-in loaded succesfully. Go to the HOME tab and click the 'Show Taskpane' button to get started."/>
-        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Click to Show a Taskpane"/>
+        <bt:String id="GetStarted.Description" DefaultValue="Excel2LaTeX installed succesfully. Select some cells to get started."/>
+        <bt:String id="CopyButton.Tooltip" DefaultValue="Copy LaTeX code to your clipboard"/>
+        <!-- <bt:String id="ExportButton.Tooltip" DefaultValue="Export a LaTeX document to a file"/> -->
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>
