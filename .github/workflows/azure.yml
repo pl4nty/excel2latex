@@ -21,7 +21,7 @@ jobs:
         npm run test --if-present
     - name: 'Deploy to Azure WebApp'
       uses: feeloor/azure-static-website-deploy@v0.1.0
-      with:
+      env:
         SOURCE_DIR: "./dist"
         AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
         AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
