@@ -8,7 +8,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Contoso Task Pane Add-in</title>
+    <title>Excel2LaTeX</title>
 
     <!-- Office JavaScript API -->
     <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
@@ -17,7 +17,11 @@
     <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/9.6.1/css/fabric.min.css"/>
 
     <!-- Template styles -->
-    <link href="taskpane.css" rel="stylesheet" type="text/css" />
+    <link href="taskpane.css" rel="stylesheet" type="text/css"/>
+
+    <!-- MathJax for rendering LaTeX previews -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
 <body class="ms-font-m ms-welcome ms-Fabric ms-bgColor-neutralLighter">
@@ -26,7 +30,8 @@
     </section>
     <main id="app-body" class="ms-welcome__main" style="display: none;">
         <h1 class="ms-font-su"> LaTeX generated! </h1>
-        <a id="container"></a>
+        <p id="container"></p>
+        <!-- <p id="temp">\[\gamma=\lim_{n\to\infty}\left(\sum_{k=1}^n\frac1k-ln(n)\right)\]</p> -->
         <div role="button" id="copy" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
             <span class="ms-Button-label">Copy</span>
         </div>

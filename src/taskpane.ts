@@ -7,6 +7,21 @@
 
 Office.onReady(info => {
   if (info.host === Office.HostType.Excel) {
+    // Load UI
+    document.getElementById("sideload-msg").style.display = "none";
+    document.getElementById("app-body").style.display = "flex";
+    document.getElementById("copy").onclick = copy;
+
+    // Rerender LaTeX preview on content change
+    const observer = new MutationObserver(mutationList => {
+        document.getElementById("temp").innerText = mutationList[0].attributeName;
+        //MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+    });
+    observer.observe(document.getElementById("container"), {
+        attributes: true,
+        characterData: true
+    });
+
     Excel.run(async context => {
       // hot reload
       const range = context.workbook.getSelectedRange();
@@ -19,11 +34,6 @@ Office.onReady(info => {
       run({ binding });
       await context.sync();
     });
-    
-    // Load UI
-    document.getElementById("sideload-msg").style.display = "none";
-    document.getElementById("app-body").style.display = "flex";
-    document.getElementById("copy").onclick = copy;
   }
 });
 
@@ -44,6 +54,7 @@ export async function run(event: Excel.BindingDataChangedEventArgs) {
     Excel.run(async context => {
       const range = event.binding.getRange();
       range.load('values');
+
       const props = range.getCellProperties({
         format: {
           font: {
@@ -58,7 +69,8 @@ export async function run(event: Excel.BindingDataChangedEventArgs) {
         }
       });
 
-      await context.sync();
+      await context.sync(); // first-time context
+      await event.binding.context.sync(); // hot-reload context
 
       document.getElementById("container").innerText = rangeToLatex(range, props);
     });
@@ -91,9 +103,10 @@ function rangeToLatex(range: Excel.Range, props: OfficeExtension.ClientResult<Ex
 
   return [
     ...Object.values(packages),
-    "\\begin{tabular}",
+    // TODO handle column alignment and borders
+    `\\begin{array}{${"c".repeat(range.values[0].length)}}`,
     ...rows,
-    "\\end{tabular}"
+    "\\end{array}"
   ].join('\n');
 }
 
