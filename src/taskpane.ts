@@ -66,7 +66,14 @@ export async function run(event: Excel.BindingDataChangedEventArgs) {
           subscript: true,
           superscript: true,
           underline: true
-        }
+        },
+        // borders: {
+        //   style: true
+        // },
+        // fill: {
+        //   color: true
+        // },
+        // horizontalAlignment: true
       }
     });
 
@@ -107,7 +114,7 @@ function rangeToLatex(range: Excel.Range, props: OfficeExtension.ClientResult<Ex
       if (value === '') return '';
       value = value.toString(); // values can be strings, numbers or bools
 
-      const formatted = applyFormat(value, props.value[i][j].format, packages);
+      const formatted = applyFormat(i, j, value, props.value[i][j].format, packages);
       packages = formatted.packages;
       return formatted.value;
     }).join(' & ') + '\\\\';
@@ -122,8 +129,8 @@ function rangeToLatex(range: Excel.Range, props: OfficeExtension.ClientResult<Ex
 }
 
 // Only applies if format applied to entire cell, not individual letters
-// TODO cell borders, alignment?
-function applyFormat(value: string, format, packages) {
+// TODO non-MathJax preview rendering to support border/fill/alignment
+function applyFormat(i: number, j:number, value: string, format: Excel.CellPropertiesFormat, packages) {
   if (format.font.bold) value = `\\textbf{${value}}`
 
   if (format.font.color !== "#000000") {
@@ -133,9 +140,7 @@ function applyFormat(value: string, format, packages) {
 
   if (format.font.italic) value = `\\textit{${value}}`
 
-  // apply font?
-
-  // don't change font size
+  // TODO apply font and fontsize
 
   if (format.font.strikethrough) {
     if (!packages.strikethrough) packages.strikethrough = "\\usepackage{cancel}";
@@ -150,6 +155,29 @@ function applyFormat(value: string, format, packages) {
   if (format.font.superscript) value = `\\textsuperscript{${value}}`
 
   if (format.font.underline === "Single") value = `\\underline{${value}}`
+
+  // \multicolumn isn't supported by MathJax
+  // const leftBorder = format.borders.left.style !== "None";
+  // const rightBorder = format.borders.right.style !== "None";
+  // if (leftBorder || rightBorder) {
+  //   value = `\\multicolumn{1}{${leftBorder ? "|" : ''}${value}${rightBorder ? "|" : ''}}`;
+  // }
+  
+  // \cline isn't supported by MathJax
+  // if (i === 0 && format.borders.top.style !== "None") value = `\\cline{${j}-${j}}${value}`;
+  // if (format.borders.bottom.style !== "None") value += `\\cline{${j}-${j}}`;
+
+  // \cellcolor isn't supported by MathJax
+  // if (format.fill.color !== "#000000") value = `\\cellcolor{${format.fill.color}}${value}`;
+
+  // \multicolumn isn't supported by MathJax
+  // switch (format.horizontalAlignment) {
+  //   case "Left": `\\multicolumn{1}{l}{${value}}`; break;
+  //   case "Center": `\\multicolumn{1}{c}{${value}}`; break;
+  //   case "Right": `\\multicolumn{1}{r}{${value}}`; break;
+  // }
+
+  // TODO cell width - not available directly on cell
 
   return { value, packages };
 }
