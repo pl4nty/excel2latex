@@ -30,39 +30,74 @@
       "args": ["--", "--app", "word"]
     },
     {
-      "name": "Office Online (Chrome)",
-      "type": "chrome",
-      "request": "launch",
-      // To debug your Add-in:
-      // 1. When prompted, enter the url (share link) to an Office Online document.
-      // 2. Sideload your Add-in. https://docs.microsoft.com/en-us/office/dev/add-ins/testing/sideload-office-add-ins-for-testing
-      "url": "${input:officeOnlineDocumentUrl}",
-      "webRoot": "${workspaceFolder}",
-      "preLaunchTask": "Debug: Web"
+      "name": "Office Online (Firefox)",
+      "type": "firefox",
+      "request": "attach",
+      "host": "localhost",
+      
+      "tabFilter": "onedrive.live.com/*",
+      "pathMappings": [{
+        "url": "webpack:///",
+        "path": "${workspaceFolder}/"
+      },
+      {
+        "url": "https://localhost:3000/",
+        "path": "${workspaceFolder}/"
+      }],
+      "log": {
+        "fileName": "${workspaceFolder}/log.txt",
+        "fileLevel": {
+            "default": "Debug"
+        }
+      }
+      // "preLaunchTask": "Debug: Web"
     },
     {
-        "name": "Office Online (Chromium Edge)",
-        "type": "msedge",
-        "version": "stable",
-        "request": "launch",
-        // To debug your Add-in:
-        // 1. When prompted, enter the url (share link) to an Office Online document.
-        // 2. Sideload your Add-in. https://docs.microsoft.com/en-us/office/dev/add-ins/testing/sideload-office-add-ins-for-testing
-        "url": "${input:officeOnlineDocumentUrl}",
-        "webRoot": "${workspaceFolder}",
-        "preLaunchTask": "Debug: Web"
-    },
-    {
-      "name": "Office Online (Edge)",
-      "type": "edge",
+      "name": "Launch Firefox v2",
+      "type": "firefox",
       "request": "launch",
-      // To debug your Add-in:
-      // 1. When prompted, enter the url (share link) to an Office Online document.
-      // 2. Sideload your Add-in. https://docs.microsoft.com/en-us/office/dev/add-ins/testing/sideload-office-add-ins-for-testing
-      "url": "${input:officeOnlineDocumentUrl}",
-      "webRoot": "${workspaceFolder}",
-      "preLaunchTask": "Debug: Web"
+      "url": "https://localhost:3000/",
+      "reAttach": true,
+      "pathMappings": [
+          {
+            "url": "webpack:///",
+            "path": "${workspaceFolder}/"
+          }
+      ]
     },
+    // Add-in is iframed, which are broken in Chrome and Edge debuggers
+    // {
+    //   "name": "Attach to Office Online (Edge)",
+    //   "type": "edge",
+    //   "request": "attach",
+    //   "port": 9222,
+    //   "address": "[::1]",
+    //   "urlFilter": "onedrive.live.com/*",
+    //   "webRoot": "${workspaceFolder}",
+    //   "sourceMaps": true,
+    //   "smartStep": true,
+    //   "timeout": 20000,
+    //   "sourceMapPathOverrides": {
+    //     "webpack:///./src/taskpane.ts": "${workspaceFolder}/src/taskpane.ts",
+    //     "webpack:///./node_modules/*": "${workspaceFolder}/node_modules/*"
+    //   }
+    // },
+    // {
+    //   "name": "Attach to Office Online (Chrome)",
+    //   "type": "chrome",
+    //   "request": "attach",
+    //   "port": 9223,
+    //   "address": "localhost",
+    //   "url": "onedrive.live.com/*",
+    //   "webRoot": "${workspaceFolder}",
+    //   "sourceMaps": true,
+    //   "smartStep": true,
+    //   "timeout": 20000,
+    //   "sourceMapPathOverrides": {
+    //     "webpack:///./src/*": "${workspaceFolder}/src/*",
+    //     "webpack:///./node_modules/*": "${workspaceFolder}/node_modules/*"
+    //   }
+    // },
     {
       "name": "Attach to Office Add-ins",
       "type": "office-addin",

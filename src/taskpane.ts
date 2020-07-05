@@ -3,23 +3,28 @@
  * See LICENSE in the project root for license information.
  */
 
-/* global console, document, Excel, Office */
+/* global console, document, Excel, Office, MathJax*/
 
 Office.onReady(info => {
   if (info.host === Office.HostType.Excel) {
-    // Load UI
     document.getElementById("sideload-msg").style.display = "none";
-    document.getElementById("app-body").style.display = "flex";
     document.getElementById("copy").onclick = copy;
 
     // Rerender LaTeX preview on content change
-    const observer = new MutationObserver(mutationList => {
-        document.getElementById("temp").innerText = mutationList[0].attributeName;
-        //MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+    const node = document.getElementById("preview");
+    // eslint-disable-next-line no-undef
+    const observer = new MutationObserver(() => {
+      console.log(MathJax);
+      MathJax.Hub.Queue(["Typeset",MathJax.Hub,"preview"]);
+      MathJax.Hub.Queue(function () {
+        document.getElementById("app-body").style.display = "flex";
+      });
+      // use MathJax.typesetPromise() with MathJax v2 when @types/mathjax gets updated
     });
-    observer.observe(document.getElementById("container"), {
+    observer.observe(node, {
         attributes: true,
-        characterData: true
+        childList: true,
+        subtree: true
     });
 
     Excel.run(async context => {
@@ -38,7 +43,7 @@ Office.onReady(info => {
 });
 
 function copy() {
-  const node = document.getElementById("container");
+  const node = document.getElementById("preview");
   // eslint-disable-next-line no-undef
   const selection = window.getSelection();
   const range = document.createRange();
@@ -53,7 +58,7 @@ export async function run(event: Excel.BindingDataChangedEventArgs) {
   try {
     Excel.run(async context => {
       const range = event.binding.getRange();
-      range.load('values');
+      range.load('values'); 
 
       const props = range.getCellProperties({
         format: {
@@ -72,7 +77,7 @@ export async function run(event: Excel.BindingDataChangedEventArgs) {
       await context.sync(); // first-time context
       await event.binding.context.sync(); // hot-reload context
 
-      document.getElementById("container").innerText = rangeToLatex(range, props);
+      document.getElementById("preview").innerText = rangeToLatex(range, props);
     });
   } catch (error) {
     console.error(error);
@@ -103,7 +108,6 @@ function rangeToLatex(range: Excel.Range, props: OfficeExtension.ClientResult<Ex
 
   return [
     ...Object.values(packages),
-    // TODO handle column alignment and borders
     `\\begin{array}{${"c".repeat(range.values[0].length)}}`,
     ...rows,
     "\\end{array}"
@@ -111,6 +115,7 @@ function rangeToLatex(range: Excel.Range, props: OfficeExtension.ClientResult<Ex
 }
 
 // Only applies if format applied to entire cell, not individual letters
+// TODO cell borders, alignment?
 function applyFormat(value: string, format, packages) {
   if (format.font.bold) value = `\\textbf{${value}}`
 
