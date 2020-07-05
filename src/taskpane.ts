@@ -3,18 +3,16 @@
  * See LICENSE in the project root for license information.
  */
 
-/* global console, document, Excel, Office, MathJax*/
+/* global console, document, Excel, Office, MathJax, OfficeExtension, window*/
 
 Office.onReady(info => {
   if (info.host === Office.HostType.Excel) {
-    document.getElementById("sideload-msg").style.display = "none";
+    document.getElementById("error-body").style.display = "none";
     document.getElementById("copy").onclick = copy;
 
     // Rerender LaTeX preview on content change
     const node = document.getElementById("preview");
-    // eslint-disable-next-line no-undef
-    const observer = new MutationObserver(() => {
-      console.log(MathJax);
+    const observer = new window.MutationObserver(() => {
       MathJax.Hub.Queue(["Typeset",MathJax.Hub,"preview"]);
       MathJax.Hub.Queue(function () {
         document.getElementById("app-body").style.display = "flex";
@@ -38,13 +36,12 @@ Office.onReady(info => {
       // initial load
       run({ binding });
       await context.sync();
-    });
+    }).catch(excelError);;
   }
 });
 
 function copy() {
   const node = document.getElementById("preview");
-  // eslint-disable-next-line no-undef
   const selection = window.getSelection();
   const range = document.createRange();
   range.selectNodeContents(node);
@@ -55,37 +52,47 @@ function copy() {
 }
 
 export async function run(event: Excel.BindingDataChangedEventArgs) {
-  try {
-    Excel.run(async context => {
-      const range = event.binding.getRange();
-      range.load('values'); 
+  Excel.run(async context => {
+    const range = event.binding.getRange();
+    range.load('values'); 
 
-      const props = range.getCellProperties({
-        format: {
-          font: {
-            bold: true,
-            color: true,
-            italic: true,
-            strikethrough: true,
-            subscript: true,
-            superscript: true,
-            underline: true
-          }
+    const props = range.getCellProperties({
+      format: {
+        font: {
+          bold: true,
+          color: true,
+          italic: true,
+          strikethrough: true,
+          subscript: true,
+          superscript: true,
+          underline: true
         }
-      });
-
-      await context.sync(); // first-time context
-      await event.binding.context.sync(); // hot-reload context
-
-      document.getElementById("preview").innerText = rangeToLatex(range, props);
+      }
     });
-  } catch (error) {
-    console.error(error);
-    // "Please select a single range"
-    //if (error instanceof OfficeExtension.Error) {
-    //  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-    //}
+
+    await context.sync(); // first-time context
+    await event.binding.context.sync(); // hot-reload context
+
+    document.getElementById("preview").innerText = rangeToLatex(range, props);
+  }).catch(excelError);
+}
+
+function excelError(error) {
+  if (error instanceof OfficeExtension.Error) {
+    switch (error.code) {
+      case "InvalidSelection": displayError("Please select a single range."); break;
+      default: displayError(error.message);
+    }
+  } else {
+    displayError(error);
   }
+}
+
+function displayError(message) {
+  document.getElementById("app-body").style.display = "none";
+  document.getElementById("error-body").removeAttribute("style");
+  document.getElementById("error-msg").innerHTML = message;
+  console.error(message);
 }
 
 function rangeToLatex(range: Excel.Range, props: OfficeExtension.ClientResult<Excel.CellProperties[][]>) {
