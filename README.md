@@ -6,4 +6,4 @@ Built with the [Office Javascript API](https://docs.microsoft.com/en-us/javascri
 
 ## Installation
 
-[Click here](https://dummy.link) to install from Microsoft AppSource
+Unfortunately this add-in could not be published on AppSource, so it must be [sideloaded or centrally deployed](https://docs.microsoft.com/en-us/office/dev/add-ins/publish/publish).
