@@ -50,6 +50,10 @@ module.exports = async (env, options) => {
         {
           to: "taskpane.css",
           from: "./src/taskpane.css"
+        },
+        {
+            to: "assets",
+            from: "./assets"
         }
       ])
     ],
