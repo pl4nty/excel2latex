@@ -42,8 +42,8 @@ module.exports = async (env, options) => {
     plugins: [
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
-        filename: "taskpane.html",
-        template: "./src/taskpane.html",
+        filename: "index.html",
+        template: "./src/index.html",
         chunks: ["polyfill", "taskpane"]
       }),
       new CopyWebpackPlugin([
