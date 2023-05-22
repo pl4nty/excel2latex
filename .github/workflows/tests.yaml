@@ -20,4 +20,3 @@ jobs:
       - uses: addnab/docker-run-action@v3
         with:
           image: excel2latex:latest
-          run: static-web-server
