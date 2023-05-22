@@ -7,7 +7,7 @@
 
 Office.onReady(info => {
   if (info.host === Office.HostType.Excel) {
-    document.getElementById("error-body").style.display = "none";
+    document.getElementById("sideload-msg").style.display = "none";
     document.getElementById("copy").onclick = copy;
 
     // Rerender LaTeX preview on content change

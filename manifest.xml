@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="TaskPaneApp">
   <Id>98aa6b96-1ff9-4737-b37b-d809677f3d52</Id>
-  <Version>1.0.0.0</Version>
-  <ProviderName>Contoso</ProviderName>
+  <Version>1.0.1.0</Version>
+  <ProviderName>pl4nty</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="Excel2LaTeX"/>
   <Description DefaultValue="Office add-in for converting Excel cells to LaTeX tables"/>
@@ -29,7 +29,7 @@
             <LearnMoreUrl resid="GetStarted.LearnMoreUrl"/>
           </GetStarted>
           <ExtensionPoint xsi:type="PrimaryCommandSurface">
-            <OfficeTab id="TabData">
+            <OfficeTab id="TabHome">
               <Group id="CommandsGroup">
                 <Label resid="CommandsGroup.Label"/>
                 <Icon>
@@ -37,11 +37,11 @@
                   <bt:Image size="32" resid="Icon.32x32"/>
                   <bt:Image size="80" resid="Icon.80x80"/>
                 </Icon>
-                <Control xsi:type="Button" id="CopyButton">
-                  <Label resid="CopyButton.Label"/>
+                <Control xsi:type="Button" id="TaskpaneButton">
+                  <Label resid="TaskpaneButton.Label"/>
                   <Supertip>
-                    <Title resid="CopyButton.Label"/>
-                    <Description resid="CopyButton.Tooltip"/>
+                    <Title resid="TaskpaneButton.Label"/>
+                    <Description resid="TaskpaneButton.Tooltip"/>
                   </Supertip>
                   <Icon>
                     <bt:Image size="16" resid="Icon.16x16"/>
@@ -72,11 +72,11 @@
       <bt:ShortStrings>
         <bt:String id="GetStarted.Title" DefaultValue="Get started with Excel2LaTeX"/>
         <bt:String id="CommandsGroup.Label" DefaultValue="Excel2LaTeX"/>
-        <bt:String id="CopyButton.Label" DefaultValue="Convert to LaTeX"/>
+        <bt:String id="TaskpaneButton.Label" DefaultValue="Convert to LaTeX"/>
       </bt:ShortStrings>
       <bt:LongStrings>
         <bt:String id="GetStarted.Description" DefaultValue="Excel2LaTeX installed successfully. Select some cells to get started."/>
-        <bt:String id="CopyButton.Tooltip" DefaultValue="Convert selected cells to LaTeX code."/>
+        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Convert selected cells to LaTeX code."/>
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>

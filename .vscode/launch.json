@@ -5,117 +5,88 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Excel Desktop",
-      "type": "node",
-      "request": "launch",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "start", "desktop"],
-      "args": ["--", "--app", "excel"],
-      "timeout": 45000
-    },
-    {
-      "name": "PowerPoint Desktop",
-      "type": "node",
-      "request": "launch",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "start", "desktop"],
-      "args": ["--", "--app", "powerpoint"]
-    },
-    {
-      "name": "Word Desktop",
-      "type": "node",
-      "request": "launch",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "start", "desktop"],
-      "args": ["--", "--app", "word"]
-    },
-    {
-      "name": "Office Online (Firefox)",
-      "type": "firefox",
+      "name": "Excel Desktop (Edge Chromium)",
+      "type": "msedge",
       "request": "attach",
-      "host": "localhost",
-      
-      "tabFilter": "onedrive.live.com/*",
-      "pathMappings": [{
-        "url": "webpack:///",
-        "path": "${workspaceFolder}/"
-      },
-      {
-        "url": "https://localhost:3000/",
-        "path": "${workspaceFolder}/"
-      }],
-      "log": {
-        "fileName": "${workspaceFolder}/log.txt",
-        "fileLevel": {
-            "default": "Debug"
-        }
-      }
-      // "preLaunchTask": "Debug: Web"
+      "port": 9229,
+      "timeout": 600000,
+      "webRoot": "${workspaceRoot}",
+      "preLaunchTask": "Debug: Excel Desktop",
+      "postDebugTask": "Stop Debug"
     },
     {
-      "name": "Launch Firefox v2",
-      "type": "firefox",
-      "request": "launch",
-      "url": "https://localhost:3000/",
-      "reAttach": true,
-      "pathMappings": [
-          {
-            "url": "webpack:///",
-            "path": "${workspaceFolder}/"
-          }
-      ]
-    },
-    // Add-in is iframed, which are broken in Chrome and Edge debuggers
-    // {
-    //   "name": "Attach to Office Online (Edge)",
-    //   "type": "edge",
-    //   "request": "attach",
-    //   "port": 9222,
-    //   "address": "[::1]",
-    //   "urlFilter": "onedrive.live.com/*",
-    //   "webRoot": "${workspaceFolder}",
-    //   "sourceMaps": true,
-    //   "smartStep": true,
-    //   "timeout": 20000,
-    //   "sourceMapPathOverrides": {
-    //     "webpack:///./src/taskpane.ts": "${workspaceFolder}/src/taskpane.ts",
-    //     "webpack:///./node_modules/*": "${workspaceFolder}/node_modules/*"
-    //   }
-    // },
-    // {
-    //   "name": "Attach to Office Online (Chrome)",
-    //   "type": "chrome",
-    //   "request": "attach",
-    //   "port": 9223,
-    //   "address": "localhost",
-    //   "url": "onedrive.live.com/*",
-    //   "webRoot": "${workspaceFolder}",
-    //   "sourceMaps": true,
-    //   "smartStep": true,
-    //   "timeout": 20000,
-    //   "sourceMapPathOverrides": {
-    //     "webpack:///./src/*": "${workspaceFolder}/src/*",
-    //     "webpack:///./node_modules/*": "${workspaceFolder}/node_modules/*"
-    //   }
-    // },
-    {
-      "name": "Attach to Office Add-ins",
+      "name": "Excel Desktop (Edge Legacy)",
       "type": "office-addin",
       "request": "attach",
-      "port": 9222,
-      "trace": "verbose",
       "url": "https://localhost:3000/taskpane.html?_host_Info=Excel$Win32$16.01$en-US$$$$0",
-      "webRoot": "${workspaceFolder}",
-      "timeout": 10000,
-      //"preLaunchTask": "npm: start",
-      //"postDebugTask": "Stop Debug"
-    }
-  ],
-  "inputs": [
+      "port": 9222,
+      "timeout": 600000,
+      "webRoot": "${workspaceRoot}",
+      "preLaunchTask": "Debug: Excel Desktop",
+      "postDebugTask": "Stop Debug"
+    },
     {
-      "id": "officeOnlineDocumentUrl",
-      "type": "promptString",
-      "description": "Please enter the url for the Office Online document."
+      "name": "Outlook Desktop (Edge Chromium)",
+      "type": "msedge",
+      "request": "attach",
+      "port": 9229,
+      "timeout": 600000,
+      "webRoot": "${workspaceRoot}",
+      "preLaunchTask": "Debug: Outlook Desktop",
+      "postDebugTask": "Stop Debug"
+    },
+    {
+      "name": "Outlook Desktop (Edge Legacy)",
+      "type": "office-addin",
+      "request": "attach",
+      "url": "https://localhost:3000/taskpane.html?_host_Info=Outlook$Win32$16.01$en-US$$$$0",
+      "port": 9222,
+      "timeout": 600000,
+      "webRoot": "${workspaceRoot}",
+      "preLaunchTask": "Debug: Outlook Desktop",
+      "postDebugTask": "Stop Debug"
+    },
+    {
+      "name": "PowerPoint Desktop (Edge Chromium)",
+      "type": "msedge",
+      "request": "attach",
+      "port": 9229,
+      "timeout": 600000,
+      "webRoot": "${workspaceRoot}",
+      "preLaunchTask": "Debug: PowerPoint Desktop",
+      "postDebugTask": "Stop Debug"
+    },
+    {
+      "name": "PowerPoint Desktop (Edge Legacy)",
+      "type": "office-addin",
+      "request": "attach",
+      "url": "https://localhost:3000/taskpane.html?_host_Info=PowerPoint$Win32$16.01$en-US$$$$0",
+      "port": 9222,
+      "timeout": 600000,
+      "webRoot": "${workspaceRoot}",
+      "preLaunchTask": "Debug: PowerPoint Desktop",
+      "postDebugTask": "Stop Debug"
+    },
+    {
+      "name": "Word Desktop (Edge Chromium)",
+      "type": "msedge",
+      "request": "attach",
+      "port": 9229,
+      "timeout": 600000,
+      "webRoot": "${workspaceRoot}",
+      "preLaunchTask": "Debug: Word Desktop",
+      "postDebugTask": "Stop Debug"
+    },
+    {
+      "name": "Word Desktop (Edge Legacy)",
+      "type": "office-addin",
+      "request": "attach",
+      "url": "https://localhost:3000/taskpane.html?_host_Info=Word$Win32$16.01$en-US$$$$0",
+      "port": 9222,
+      "timeout": 600000,
+      "webRoot": "${workspaceRoot}",
+      "preLaunchTask": "Debug: Word Desktop",
+      "postDebugTask": "Stop Debug"
     }
   ]
 }
