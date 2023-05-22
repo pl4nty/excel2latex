@@ -1,0 +1,19 @@
+name: Build and test
+
+on:
+  pull_request:
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    name: Build and run
+    steps:
+      - uses: actions/checkout@v3
+      - uses: docker/build-push-action@v2
+        with:
+          tags: excel2latex:latest
+          push: false
+      - uses: addnab/docker-run-action@v3
+        with:
+          image: excel2latex:latest
+          run: ls
