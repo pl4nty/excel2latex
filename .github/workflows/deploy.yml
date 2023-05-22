@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and deploy to Azure
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           submodules: true
       - name: Deploy to Static Web App
