@@ -34,19 +34,13 @@ Office.onReady(info => {
       // initial load
       run({ binding });
       await context.sync();
-    }).catch(excelError);;
+    }).catch(excelError);
   }
 });
 
 function copy() {
-  const node = document.getElementById("preview");
-  const selection = window.getSelection();
-  const range = document.createRange();
-  range.selectNodeContents(node);
-  selection.removeAllRanges();
-  selection.addRange(range);
-  document.execCommand("copy");
-  selection.empty();
+  const tex = document.getElementById("preview").querySelector("script[type*='math/tex']").innerHTML;
+  navigator.clipboard.writeText(tex);
 }
 
 export async function run(event: Excel.BindingDataChangedEventArgs) {
