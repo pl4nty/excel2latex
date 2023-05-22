@@ -8,15 +8,13 @@
 Office.onReady(info => {
   if (info.host === Office.HostType.Excel) {
     document.getElementById("sideload-msg").style.display = "none";
+    document.getElementById("app-body").style.display = "flex";
     document.getElementById("copy").onclick = copy;
 
     // Rerender LaTeX preview on content change
     const node = document.getElementById("preview");
     const observer = new window.MutationObserver(() => {
       MathJax.Hub.Queue(["Typeset",MathJax.Hub,"preview"]);
-      MathJax.Hub.Queue(function () {
-        document.getElementById("app-body").style.display = "flex";
-      });
       // use MathJax.typesetPromise() with MathJax v2 when @types/mathjax gets updated
     });
     observer.observe(node, {
