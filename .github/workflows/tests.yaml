@@ -17,6 +17,7 @@ jobs:
           push: false
           cache-from: type=gha
           cache-to: type=gha,mode=max
-      - uses: addnab/docker-run-action@v3
-        with:
-          image: excel2latex:latest
+      # tries to use sh, not available in container
+      # - uses: addnab/docker-run-action@v3
+      #   with:
+      #     image: excel2latex:latest
