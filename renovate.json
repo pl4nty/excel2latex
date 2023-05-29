@@ -4,15 +4,9 @@
     "config:base"
   ],
   "rangeStrategy": "pin",
+  "automerge": true,
   "platformAutomerge": true,
   "lockFileMaintenance": {
-    "enabled": true,
-    "automerge": true
-  },
-  "packageRules": [
-    {
-      "matchUpdateTypes": ["minor", "patch"],
-      "automerge": true
-    }
-  ]
+    "enabled": true
+  }
 }
