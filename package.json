@@ -33,7 +33,7 @@
     "@babel/core": "7.22.1",
     "@babel/preset-typescript": "7.21.5",
     "@types/office-js": "1.0.327",
-    "@types/office-runtime": "1.0.30",
+    "@types/office-runtime": "1.0.31",
     "acorn": "8.8.2",
     "babel-loader": "9.1.2",
     "copy-webpack-plugin": "11.0.0",
