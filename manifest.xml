@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="TaskPaneApp">
   <Id>98aa6b96-1ff9-4737-b37b-d809677f3d52</Id>
-  <Version>1.0.1.0</Version>
+  <Version>1.0.2.0</Version>
   <ProviderName>pl4nty</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="Excel2LaTeX"/>
@@ -66,7 +66,7 @@
         <bt:Image id="Icon.80x80" DefaultValue="https://localhost:3000/assets/icon-80.png"/>
       </bt:Images>
       <bt:Urls>
-        <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://github.com/pl4nty/modern-excel2latex"/>
+        <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://github.com/pl4nty/excel2latex"/>
         <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/index.html"/>
       </bt:Urls>
       <bt:ShortStrings>
