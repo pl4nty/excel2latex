@@ -34,7 +34,7 @@
     "@babel/preset-typescript": "7.22.5",
     "@types/office-js": "1.0.333",
     "@types/office-runtime": "1.0.33",
-    "acorn": "8.9.0",
+    "acorn": "8.10.0",
     "babel-loader": "9.1.2",
     "copy-webpack-plugin": "11.0.0",
     "eslint-plugin-office-addins": "2.1.5",
