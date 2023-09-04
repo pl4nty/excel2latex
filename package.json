@@ -30,8 +30,8 @@
     "regenerator-runtime": "0.14.0"
   },
   "devDependencies": {
-    "@babel/core": "7.22.11",
-    "@babel/preset-typescript": "7.22.11",
+    "@babel/core": "7.22.15",
+    "@babel/preset-typescript": "7.22.15",
     "@types/office-js": "1.0.341",
     "@types/office-runtime": "1.0.33",
     "acorn": "8.10.0",
