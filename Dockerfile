@@ -7,6 +7,6 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-FROM joseluisq/static-web-server:2.24.1
+FROM joseluisq/static-web-server:2.24.2
 
 COPY --from=build /app/dist /public
