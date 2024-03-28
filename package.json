@@ -32,7 +32,7 @@
   "devDependencies": {
     "@babel/core": "7.24.3",
     "@babel/preset-typescript": "7.24.1",
-    "@types/office-js": "1.0.377",
+    "@types/office-js": "1.0.378",
     "@types/office-runtime": "1.0.35",
     "acorn": "8.11.3",
     "babel-loader": "9.1.3",
