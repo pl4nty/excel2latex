@@ -30,7 +30,7 @@
     "regenerator-runtime": "0.14.1"
   },
   "devDependencies": {
-    "@babel/core": "7.25.7",
+    "@babel/core": "7.25.8",
     "@babel/preset-typescript": "7.25.7",
     "@types/office-js": "1.0.434",
     "@types/office-runtime": "1.0.35",
