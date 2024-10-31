@@ -52,7 +52,7 @@
     "source-map-loader": "5.0.0",
     "ts-loader": "9.5.1",
     "typescript": "5.6.3",
-    "webpack": "5.95.0",
+    "webpack": "5.96.0",
     "webpack-cli": "5.1.4",
     "webpack-dev-server": "5.1.0",
     "@types/mathjax": "0.0.40"
