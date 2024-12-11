@@ -54,7 +54,7 @@
     "typescript": "5.7.2",
     "webpack": "5.97.1",
     "webpack-cli": "5.1.4",
-    "webpack-dev-server": "5.1.0",
+    "webpack-dev-server": "5.2.0",
     "@types/mathjax": "0.0.40"
   },
   "prettier": "office-addin-prettier-config",
